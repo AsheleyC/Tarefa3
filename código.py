@@ -3,34 +3,30 @@ from tkinter import messagebox
 from PIL import Image, ImageTk  
 
 janela= tk.Tk()
-janela.geometry("1080x700")
+janela.geometry("1250x800")
 janela.configure(bg= "#cbe4d4")
 
 usuario_cadastrado= ""
 senha_cadastrada= ""
 
+def limpar_tela():
+    for widget in janela.winfo_children():
+        widget.destroy()
+
 def logar():
-    user= usuariol.get()
-    pw= senhal.get()
-    
-    if user == usuario_cadastrado and pw == senha_cadastrada:
-        janela.destroy()
-        nova_janela = tk.Tk()
-        nova_janela.geometry("1080x700")
-        nova_janela.title("Janela principal")
-        
-        imagem= Image.open(r"C:\Users\Usuário\Desktop\Asheley\SENAI 01\seg.png")
-        imagem= imagem.resize((1080,700))
-        imagem_tk = ImageTk.PhotoImage(imagem)
+    limpar_tela()
+    frame = tk.Frame(janela)
+    frame.pack(padx=10, pady=10)
 
-        label_imagem = tk.Label(nova_janela, image=imagem_tk)
-        label_imagem.image = imagem_tk
-        label_imagem.pack(pady=20)
+    imagem = Image.open(r"u:\Users\TEMP.CFP914EDUCA.012\Downloads\in.png")
+    imagem = imagem.resize((1200, 700))
+    imagem_tk = ImageTk.PhotoImage(imagem)
+    label_img = tk.Label(frame, image=imagem_tk)
+    label_img.image = imagem_tk
+    label_img.pack(pady=10)
 
-        nova_janela.mainloop()
-    else:
-        messagebox.showerror("Erro", "Informações incorretas")
-
+    label_boas_vindas = tk.Label(frame, text="Bem-vindo à Tela Principal!", font=("Arial", 16))
+    label_boas_vindas.pack(pady=10)
 
 def limpar():
     global usuario_cadastrado, senha_cadastrada
